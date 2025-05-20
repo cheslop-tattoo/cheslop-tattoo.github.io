@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Chelsea Heslop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atma:wght@400;500;600;700&family=Cherry+Bomb+One&family=Unkempt:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: rgb(139, 78, 155);
+            --bg-light: rgb(250, 250, 250);
+            --text-dark: rgb(40, 40, 40);
+            --text-light: rgb(255, 255, 255);
+            --cursor-color: rgb(255, 105, 180);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ff69b4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z'/></svg>") 0 24, auto;
+        }
+
+        body {
+            font-family: 'Atma', cursive;
+            background-color: var(--bg-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-dark);
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem 2rem 1rem;
+            background-color: var(--bg-light);
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+        }
+
+        .logo {
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .nav-menu {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem 0;
+            background-color: var(--bg-light);
+            align-items: center;
+        }
+
+        .nav-link {
+            font-family: 'Atma', cursive;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.5rem 1rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: block;
+            position: absolute;
+            background-color: var(--bg-light);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            font-family: 'Atma', cursive;
+            color: var(--text-dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .book-button {
+            background-color: var(--primary);
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-family: 'Atma', cursive;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 0 #8B4E9B,
+                0 6px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .book-button:hover {
+            background-color: #FFD700;
+            box-shadow: 0 2px 0 #D4AF37,
+                0 3px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(2px);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .footer {
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            text-align: center;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        .mouse-emoji {
+            position: fixed;
+            pointer-events: none;
+            font-size: 20px;
+            animation: explode 0.5s ease-out forwards;
+            z-index: 2;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .nav-link {
+                font-size: 1rem;
+            }
+
+            .faq-question {
+                font-size: 1.3rem;
+            }
+
+            .faq-answer {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .faq-container {
+                padding: 0 1rem;
+            }
+
+            .faq-item {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <img src="CHELSEA_LOGO.png" alt="Chelsea Heslop" class="logo">
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <div class="dropdown">
+                <a href="about.html" class="nav-link">About</a>
+                <div class="dropdown-content">
+                    <a href="about.html">About Me</a>
+                    <a href="travel.html">Travel Plans</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="tattoos.html" class="nav-link">Tattoos</a>
+                <div class="dropdown-content">
+                    <a href="tattoos.html">Gallery</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+            <a href="illustration.html" class="nav-link">Illustration</a>
+            <a href="https://chelseaheslop.bigcartel.com/" class="nav-link">Store</a>
+            <a href="https://form.jotform.com/213444836846363" class="book-button" target="_blank">Book a Tattoo</a>
+        </nav>
+    </header>
+
+    <main class="faq-container">
+        <div class="faq-item">
+            <h2 class="faq-question">How do I book a tattoo appointment?</h2>
+            <p class="faq-answer">You can book an appointment through my online booking form. Click the "Book a Tattoo"
+                button in the navigation menu to access the form. Please provide as much detail as possible about your
+                desired design, size, and placement.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2 class="faq-question">What is your minimum price?</h2>
+            <p class="faq-answer">My minimum price is £80. This covers small, simple designs that take approximately 1
+                hour to complete. Larger or more complex designs will be priced accordingly.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2 class="faq-question">Do you do custom designs?</h2>
+            <p class="faq-answer">Yes! I specialize in custom designs and love creating unique pieces for my clients.
+                When booking, please provide reference images and describe your vision in detail.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2 class="faq-question">How should I prepare for my tattoo appointment?</h2>
+            <p class="faq-answer">Make sure to get a good night's sleep, eat a substantial meal before your appointment,
+                and stay hydrated. Avoid alcohol 24 hours before your appointment. Wear comfortable clothing that allows
+                easy access to the area being tattooed.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2 class="faq-question">What is your cancellation policy?</h2>
+            <p class="faq-answer">I require 48 hours notice for cancellations or rescheduling. Late cancellations may
+                result in a deposit being charged for future bookings.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2 class="faq-question">Do you require a deposit?</h2>
+            <p class="faq-answer">Yes, a £50 deposit is required to secure your appointment. This is non-refundable but
+                goes towards the final cost of your tattoo.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2 class="faq-question">How do I take care of my new tattoo?</h2>
+            <p class="faq-answer">I'll provide detailed aftercare instructions after your appointment. Generally, you'll
+                need to keep the tattoo clean, moisturized, and out of direct sunlight. Avoid swimming, soaking, and
+                picking at the tattoo during the healing process.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2 class="faq-question">Do you do cover-ups?</h2>
+            <p class="faq-answer">Yes, I do cover-ups. However, they require careful consideration and planning. Please
+                send photos of the existing tattoo when booking, and we can discuss the possibilities.</p>
+        </div>
+    </main>
+
+    <script>
+        // Mouse emoji explosion
+        document.querySelector('.book-button').addEventListener('mouseover', function (e) {
+            const button = e.target;
+            const rect = button.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 8; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'mouse-emoji';
+                emoji.textContent = '🐭';
+
+                // Random angle and distance for explosion
+                const angle = (i * 45) + Math.random() * 30;
+                const distance = 100 + Math.random() * 50;
+                const tx = Math.cos(angle * Math.PI / 180) * distance;
+                const ty = Math.sin(angle * Math.PI / 180) * distance;
+
+                emoji.style.setProperty('--tx', `${tx}px`);
+                emoji.style.setProperty('--ty', `${ty}px`);
+
+                emoji.style.left = `${centerX}px`;
+                emoji.style.top = `${centerY}px`;
+
+                document.body.appendChild(emoji);
+
+                // Remove emoji after animation
+                setTimeout(() => emoji.remove(), 500);
+            }
+        });
+
+        // Mobile menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Handle dropdowns on mobile
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('.nav-link');
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-menu') && !e.target.closest('.hamburger')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            }
+        });
+
+        // Close menu when window is resized to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            }
+        });
+    </script>
+
+    <footer class="footer">
+        © 2025 Chelsea Heslop. All rights reserved.
+    </footer>
+</body>
+
+</html>

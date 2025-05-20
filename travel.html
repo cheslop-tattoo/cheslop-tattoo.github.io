@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Plans - Chelsea Heslop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atma:wght@400;500;600;700&family=Cherry+Bomb+One&family=Unkempt:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: rgb(139, 78, 155);
+            --bg-light: rgb(250, 250, 250);
+            --text-dark: rgb(40, 40, 40);
+            --text-light: rgb(255, 255, 255);
+            --cursor-color: rgb(255, 105, 180);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ff69b4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z'/></svg>") 0 24, auto;
+        }
+
+        body {
+            font-family: 'Atma', cursive;
+            background-color: var(--bg-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-dark);
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem 2rem 1rem;
+            background-color: var(--bg-light);
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+        }
+
+        .logo {
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .nav-menu {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem 0;
+            background-color: var(--bg-light);
+            align-items: center;
+        }
+
+        .nav-link {
+            font-family: 'Atma', cursive;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.5rem 1rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: block;
+            position: absolute;
+            background-color: var(--bg-light);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            font-family: 'Atma', cursive;
+            color: var(--text-dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .book-button {
+            background-color: var(--primary);
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-family: 'Atma', cursive;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 0 #8B4E9B,
+                0 6px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .book-button:hover {
+            background-color: #FFD700;
+            box-shadow: 0 2px 0 #D4AF37,
+                0 3px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(2px);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .book-button:active {
+            box-shadow: 0 1px 0 #D4AF37,
+                0 2px 3px rgba(0, 0, 0, 0.2);
+            transform: translateY(3px);
+            border-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .current-location {
+            flex: 1;
+        }
+
+        .location-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .studio-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .working-days {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin: 0.5rem 0 1rem;
+            display: inline-block;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .map-container {
+            width: 400px;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .upcoming-spots {
+            margin-top: 3rem;
+            margin-bottom: 4rem;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .upcoming-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .spots-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.1rem;
+        }
+
+        .spots-table th,
+        .spots-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--primary);
+        }
+
+        .spots-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .spots-table tr:hover {
+            background-color: rgba(139, 78, 155, 0.1);
+        }
+
+        .footer {
+            font-family: 'Atma', cursive;
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            text-align: center;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        .mouse-emoji {
+            position: fixed;
+            pointer-events: none;
+            font-size: 20px;
+            animation: explode 0.5s ease-out forwards;
+            z-index: 2;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-container {
+                flex-direction: column;
+            }
+
+            .map-container {
+                width: 100%;
+                height: 300px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .nav-link {
+                font-size: 1rem;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: none;
+            }
+
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="CHELSEA_LOGO.png" alt="Chelsea Heslop" class="logo">
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <div class="dropdown">
+                <a href="about.html" class="nav-link">About</a>
+                <div class="dropdown-content">
+                    <a href="about.html">About Me</a>
+                    <a href="travel.html">Travel Plans</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="tattoos.html" class="nav-link">Tattoos</a>
+                <div class="dropdown-content">
+                    <a href="tattoos.html">Gallery</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+            <a href="illustration.html" class="nav-link">Illustration</a>
+            <a href="https://chelseaheslop.bigcartel.com/" class="nav-link">Store</a>
+            <a href="https://form.jotform.com/213444836846363" class="book-button" target="_blank">Book a Tattoo</a>
+        </nav>
+    </header>
+
+    <main class="content-container">
+        <div class="current-location">
+            <h2 class="location-title">You can find me at:</h2>
+            <div class="studio-name">WATERMELON TATTOO STUDIO</div>
+            <div class="working-days">📅 Every Tuesday, Thursday and Saturday</div>
+            <div class="contact-info">
+                14 E Norton Pl<br>
+                Edinburgh<br>
+                EH7 5DR<br>
+                Scotland<br><br>
+                Tel: 0131 374 1957<br>
+                Email: info@watermelontattoo.com
+            </div>
+        </div>
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2233.5324810195725!2d-3.1735991231055056!3d55.95747467316069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4887b9fc31ee4d61%3A0x14ad3e12eda583ad!2sWatermelon%20Tattoo!5e0!3m2!1sen!2suk!4v1747678121248!5m2!1sen!2suk"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </main>
+
+    <div class="upcoming-spots">
+        <h2 class="upcoming-title">🌍 UPCOMING GUEST SPOTS</h2>
+        <table class="spots-table">
+            <thead>
+                <tr>
+                    <th>Studio</th>
+                    <th>Location</th>
+                    <th>Dates</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Bluebottle Tattoo Studio</td>
+                    <td>NEWCASTLE</td>
+                    <td>DATES TBC</td>
+                </tr>
+                <tr>
+                    <td>Big London Tattoo Show</td>
+                    <td>EXCEL CENTER, LONDON</td>
+                    <td>SEPT 19 - 21</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Mouse emoji explosion
+        document.querySelector('.book-button').addEventListener('mouseover', function (e) {
+            const button = e.target;
+            const rect = button.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 8; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'mouse-emoji';
+                emoji.textContent = '🐭';
+
+                // Random angle and distance for explosion
+                const angle = (i * 45) + Math.random() * 30;
+                const distance = 100 + Math.random() * 50;
+                const tx = Math.cos(angle * Math.PI / 180) * distance;
+                const ty = Math.sin(angle * Math.PI / 180) * distance;
+
+                emoji.style.setProperty('--tx', `${tx}px`);
+                emoji.style.setProperty('--ty', `${ty}px`);
+
+                emoji.style.left = `${centerX}px`;
+                emoji.style.top = `${centerY}px`;
+
+                document.body.appendChild(emoji);
+
+                // Remove emoji after animation
+                setTimeout(() => emoji.remove(), 500);
+            }
+        });
+
+        // Mobile menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Handle dropdowns on mobile
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('.nav-link');
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-menu') && !e.target.closest('.hamburger')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            }
+        });
+
+        // Close menu when window is resized to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            }
+        });
+    </script>
+
+    <footer class="footer">
+        © 2025 Chelsea Heslop. All rights reserved.
+    </footer>
+</body>
+
+</html>

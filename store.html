@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store - Chelsea Heslop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atma:wght@400;500;600;700&family=Cherry+Bomb+One&family=Unkempt:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: rgb(139, 78, 155);
+            --bg-light: rgb(250, 250, 250);
+            --text-dark: rgb(40, 40, 40);
+            --text-light: rgb(255, 255, 255);
+            --cursor-color: rgb(255, 105, 180);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ff69b4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z'/></svg>") 0 24, auto;
+        }
+
+        body {
+            font-family: 'Unkempt', cursive;
+            background-color: var(--bg-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-dark);
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem 2rem 1rem;
+            background-color: var(--bg-light);
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+        }
+
+        .logo {
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-25deg);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo:hover::before {
+            animation: shine 1s ease-out;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 200%;
+            }
+        }
+
+        h1 {
+            font-family: 'Cherry Bomb One', cursive;
+            font-size: 3rem;
+            color: var(--primary);
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+            text-align: right;
+            padding-right: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .subtitle {
+            font-family: 'Unkempt', cursive;
+            font-size: 2rem;
+            color: var(--text-dark);
+            text-align: right;
+            padding-right: 2rem;
+            margin-bottom: 1rem;
+            text-transform: lowercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem 0;
+            background-color: var(--bg-light);
+            align-items: center;
+        }
+
+        .nav-link {
+            font-family: 'Atma', cursive;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.5rem 1rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .store-content {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .store-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .store-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-25deg);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .store-item:hover {
+            transform: scale(1.02);
+        }
+
+        .store-item:hover::before {
+            animation: shine 1s ease-out;
+        }
+
+        .store-item img {
+            width: 100%;
+            aspect-ratio: 1;
+            display: block;
+            object-fit: cover;
+        }
+
+        .store-item-info {
+            padding: 1.5rem;
+        }
+
+        .store-item-title {
+            font-family: 'Atma', cursive;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .store-item-price {
+            font-family: 'Atma', cursive;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .store-item-description {
+            font-family: 'Atma', cursive;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .buy-button {
+            font-family: 'Atma', cursive;
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .buy-button:hover {
+            background-color: rgb(119, 68, 135);
+        }
+
+        .book-button {
+            background-color: var(--primary);
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-family: 'Atma', cursive;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 0 #8B4E9B,
+                0 6px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .book-button:hover {
+            background-color: #FFD700;
+            box-shadow: 0 2px 0 #D4AF37,
+                0 3px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(2px);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .book-button:active {
+            box-shadow: 0 1px 0 #D4AF37,
+                0 2px 3px rgba(0, 0, 0, 0.2);
+            transform: translateY(3px);
+            border-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .book-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.8) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-25deg);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .book-button:hover::before {
+            animation: buttonShine 0.75s ease-out;
+        }
+
+        .mouse-emoji {
+            position: absolute;
+            pointer-events: none;
+            font-size: 20px;
+            animation: explode 0.5s ease-out forwards;
+            z-index: 2;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes buttonShine {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 200%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .store-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .nav-link {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .store-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+        }
+
+        .footer {
+            font-family: 'Atma', cursive;
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            text-align: center;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="CHELSEA_LOGO.png" alt="Chelsea Heslop" class="logo">
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <div class="dropdown">
+                <a href="about.html" class="nav-link">About</a>
+                <div class="dropdown-content">
+                    <a href="about.html">About Me</a>
+                    <a href="travel.html">Travel Plans</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="tattoos.html" class="nav-link">Tattoos</a>
+                <div class="dropdown-content">
+                    <a href="tattoos.html">Gallery</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+            <a href="illustration.html" class="nav-link">Illustration</a>
+            <a href="https://chelseaheslop.bigcartel.com/" class="nav-link">Store</a>
+            <a href="https://form.jotform.com/213444836846363" class="book-button" target="_blank">Book a Tattoo</a>
+        </nav>
+    </header>
+
+    <main class="store-content">
+        <div class="store-grid">
+            <div class="store-item">
+                <img src="product1.jpg" alt="Product 1">
+                <div class="store-item-info">
+                    <h3 class="store-item-title">Art Print - Haku</h3>
+                    <p class="store-item-price">$25.00</p>
+                    <p class="store-item-description">High-quality art print of the Haku dragon design, printed on
+                        archival paper.</p>
+                    <a href="#" class="buy-button">Add to Cart</a>
+                </div>
+            </div>
+            <div class="store-item">
+                <img src="product2.jpg" alt="Product 2">
+                <div class="store-item-info">
+                    <h3 class="store-item-title">T-Shirt - Halloween Cats</h3>
+                    <p class="store-item-price">$30.00</p>
+                    <p class="store-item-description">Soft cotton t-shirt featuring the Halloween Cats design, available
+                        in multiple sizes.</p>
+                    <a href="#" class="buy-button">Add to Cart</a>
+                </div>
+            </div>
+            <div class="store-item">
+                <img src="product3.jpg" alt="Product 3">
+                <div class="store-item-info">
+                    <h3 class="store-item-title">Sticker Pack</h3>
+                    <p class="store-item-price">$15.00</p>
+                    <p class="store-item-description">Set of 5 vinyl stickers featuring various designs from the
+                        portfolio.</p>
+                    <a href="#" class="buy-button">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        © 2025 Chelsea Heslop. All rights reserved.
+    </footer>
+
+    <script>
+        // Mouse emoji explosion
+        document.querySelector('.book-button').addEventListener('mouseover', function (e) {
+            const button = e.target;
+            const rect = button.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 8; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'mouse-emoji';
+                emoji.textContent = '🐭';
+
+                // Random angle and distance for explosion
+                const angle = (i * 45) + Math.random() * 30;
+                const distance = 100 + Math.random() * 50;
+                const tx = Math.cos(angle * Math.PI / 180) * distance;
+                const ty = Math.sin(angle * Math.PI / 180) * distance;
+
+                emoji.style.setProperty('--tx', `${tx}px`);
+                emoji.style.setProperty('--ty', `${ty}px`);
+
+                emoji.style.left = `${centerX}px`;
+                emoji.style.top = `${centerY}px`;
+
+                document.body.appendChild(emoji);
+
+                // Remove emoji after animation
+                setTimeout(() => emoji.remove(), 500);
+            }
+        });
+
+        // Mobile menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Handle dropdowns on mobile
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('.nav-link');
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-menu') && !e.target.closest('.hamburger')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            }
+        });
+
+        // Close menu when window is resized to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            }
+        });
+    </script>
+</body>
+
+</html>

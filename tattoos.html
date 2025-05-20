@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tattoos - Chelsea Heslop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atma:wght@400;500;600;700&family=Cherry+Bomb+One&family=Unkempt:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: rgb(139, 78, 155);
+            --bg-light: rgb(250, 250, 250);
+            --text-dark: rgb(40, 40, 40);
+            --text-light: rgb(255, 255, 255);
+            --cursor-color: rgb(255, 105, 180);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ff69b4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z'/></svg>") 0 24, auto;
+        }
+
+        body {
+            font-family: 'Unkempt', cursive;
+            background-color: var(--bg-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-dark);
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem 2rem 1rem;
+            background-color: var(--bg-light);
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 300px;
+            height: auto;
+            display: block;
+            position: relative;
+            border-radius: 2px;
+            margin: 0;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-25deg);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo:hover::before {
+            animation: shine 1s ease-out;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 200%;
+            }
+        }
+
+        h1 {
+            font-family: 'Cherry Bomb One', cursive;
+            font-size: 3rem;
+            color: var(--primary);
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+            text-align: right;
+            padding-right: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .subtitle {
+            font-family: 'Unkempt', cursive;
+            font-size: 2rem;
+            color: var(--text-dark);
+            text-align: right;
+            padding-right: 2rem;
+            margin-bottom: 1rem;
+            text-transform: lowercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu {
+            margin-top: 0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+            padding: 1rem 0;
+            background-color: var(--bg-light);
+            align-items: center;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            position: relative;
+            width: 30px;
+            height: 30px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--text-dark);
+            border-radius: 2px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 0px;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 10px;
+        }
+
+        .hamburger span:nth-child(3) {
+            top: 20px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            top: 10px;
+            transform: rotate(135deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            left: -60px;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            top: 10px;
+            transform: rotate(-135deg);
+        }
+
+        .nav-link {
+            font-family: 'Atma', cursive;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.5rem 1rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .book-button {
+            background-color: var(--primary);
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-family: 'Atma', cursive;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 0 #8B4E9B,
+                0 6px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .book-button:hover {
+            background-color: #FFD700;
+            box-shadow: 0 2px 0 #D4AF37,
+                0 3px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(2px);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .book-button:active {
+            box-shadow: 0 1px 0 #D4AF37,
+                0 2px 3px rgba(0, 0, 0, 0.2);
+            transform: translateY(3px);
+            border-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .book-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.8) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-25deg);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .book-button:hover::before {
+            animation: buttonShine 0.75s ease-out;
+        }
+
+        .mouse-emoji {
+            position: absolute;
+            pointer-events: none;
+            font-size: 20px;
+            animation: explode 0.5s ease-out forwards;
+            z-index: 2;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes buttonShine {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 200%;
+            }
+        }
+
+        .tattoos-content {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .tattoos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            transition: transform 0.3s ease;
+            aspect-ratio: 1;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-25deg);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.02);
+        }
+
+        .portfolio-item:hover::before {
+            animation: shine 1s ease-out;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Remove tattoo-info styles */
+        .tattoo-info {
+            display: none;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            opacity: 1;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--text-dark);
+            font-size: 2rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-modal:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .logo {
+                max-width: 200px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: var(--bg-light);
+                padding: 6rem 2rem 2rem;
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-20px);
+                transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+                justify-content: center;
+                gap: 1rem;
+                flex-direction: column;
+            }
+
+            .nav-menu.active {
+                visibility: visible;
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                padding: 1.2rem 1rem;
+                font-size: 1.5rem;
+                margin: 0;
+            }
+
+            .dropdown {
+                width: 100%;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+                padding: 0.5rem 0;
+                background: rgba(139, 78, 155, 0.1);
+                border-radius: 8px;
+                margin: 0.5rem 0;
+            }
+
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: none;
+            }
+
+            .dropdown-content a {
+                text-align: center;
+                font-size: 1.2rem;
+                padding: 0.8rem 1rem;
+                color: var(--primary);
+                font-weight: 500;
+            }
+
+            .dropdown-content a:hover {
+                background-color: rgba(139, 78, 155, 0.2);
+            }
+
+            .book-button {
+                margin-top: 1rem;
+                font-size: 1.5rem;
+                padding: 1rem 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tattoos-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+        }
+
+        .dropdown-content {
+            display: block;
+            position: absolute;
+            background-color: var(--bg-light);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            font-family: 'Atma', cursive;
+            color: var(--text-dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .footer {
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            text-align: center;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="CHELSEA_LOGO.png" alt="Chelsea Heslop" class="logo">
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <div class="dropdown">
+                <a href="about.html" class="nav-link">About</a>
+                <div class="dropdown-content">
+                    <a href="about.html">About Me</a>
+                    <a href="travel.html">Travel Plans</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="tattoos.html" class="nav-link">Tattoos</a>
+                <div class="dropdown-content">
+                    <a href="tattoos.html">Gallery</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+            <a href="illustration.html" class="nav-link">Illustration</a>
+            <a href="https://chelseaheslop.bigcartel.com/" class="nav-link">Store</a>
+            <a href="https://form.jotform.com/213444836846363" class="book-button" target="_blank">Book a Tattoo</a>
+        </nav>
+    </header>
+
+    <main class="tattoos-content">
+        <div class="tattoos-grid">
+            <div class="portfolio-item">
+                <img src="haku.jpeg" alt="Haku" onclick="openModal(this.src)">
+            </div>
+            <div class="portfolio-item">
+                <img src="feathers_basic.jpeg" alt="Feathers Basic Design" onclick="openModal(this.src)">
+            </div>
+            <div class="portfolio-item">
+                <img src="scar.jpeg" alt="Scar Design" onclick="openModal(this.src)">
+            </div>
+            <div class="portfolio-item">
+                <img src="little_prince.jpeg" alt="Little Prince" onclick="openModal(this.src)">
+            </div>
+            <div class="portfolio-item">
+                <img src="rat_with_daisies.jpeg" alt="Rat with Daisies" onclick="openModal(this.src)">
+            </div>
+            <div class="portfolio-item">
+                <img src="halloween_cats.jpeg" alt="Halloween Cats" onclick="openModal(this.src)">
+            </div>
+            <div class="portfolio-item">
+                <img src="gatomon.jpeg" alt="Gatomon" onclick="openModal(this.src)">
+            </div>
+            <div class="portfolio-item">
+                <img src="kirby_link.jpeg" alt="Kirby Link" onclick="openModal(this.src)">
+            </div>
+        </div>
+    </main>
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Enlarged view">
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2025 Chelsea Heslop. All rights reserved.
+    </footer>
+
+    <script>
+        // Modal functionality
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+            // Trigger reflow
+            modal.offsetHeight;
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 300); // Match transition duration
+        }
+
+        // Close modal when clicking the close button
+        document.querySelector('.close-modal').onclick = function (e) {
+            e.stopPropagation();
+            closeModal();
+        }
+
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Mouse emoji explosion
+        document.querySelector('.book-button').addEventListener('mouseover', function (e) {
+            const button = e.target;
+            const rect = button.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 8; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'mouse-emoji';
+                emoji.textContent = '🐭';
+
+                // Random angle and distance for explosion
+                const angle = (i * 45) + Math.random() * 30;
+                const distance = 100 + Math.random() * 50;
+                const tx = Math.cos(angle * Math.PI / 180) * distance;
+                const ty = Math.sin(angle * Math.PI / 180) * distance;
+
+                emoji.style.setProperty('--tx', `${tx}px`);
+                emoji.style.setProperty('--ty', `${ty}px`);
+
+                emoji.style.left = `${centerX}px`;
+                emoji.style.top = `${centerY}px`;
+
+                document.body.appendChild(emoji);
+
+                // Remove emoji after animation
+                setTimeout(() => emoji.remove(), 500);
+            }
+        });
+
+        // Mobile menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Handle dropdowns on mobile
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('.nav-link');
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-menu') && !e.target.closest('.hamburger')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            }
+        });
+
+        // Close menu when window is resized to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            }
+        });
+    </script>
+</body>
+
+</html>
