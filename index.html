@@ -71,7 +71,7 @@
 
         .header {
             text-align: center;
-            padding: 1rem 2rem;
+            padding: 0.7rem 2rem;
             background-color: var(--bg-light);
             border-bottom: 2px solid var(--primary);
             position: fixed;
@@ -106,7 +106,7 @@
         }
 
         .logo {
-            max-width: 200px;
+            max-width: 140px;
             height: auto;
             margin: 0;
             display: block;
@@ -440,11 +440,11 @@
 
         @media (max-width: 768px) {
             .header {
-                padding: 1rem;
+                padding: 0.7rem 1rem;
             }
 
             .logo {
-                max-width: 150px;
+                max-width: 100px;
             }
 
             .hamburger {
@@ -455,7 +455,7 @@
             }
 
             .nav-menu {
-                display: none;
+                display: flex;
                 flex-direction: column;
                 position: fixed;
                 top: 0;
@@ -464,11 +464,12 @@
                 bottom: 0;
                 background-color: var(--bg-light);
                 padding: 6rem 2rem 2rem;
-                z-index: 1000;
+                z-index: 999;
+                visibility: hidden;
                 opacity: 0;
                 transform: translateY(-20px);
-                transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-                justify-content: center;
+                transition: all 0.3s ease;
+                justify-content: flex-start;
                 gap: 1rem;
             }
 
@@ -804,7 +805,8 @@
         const navMenu = document.querySelector('.nav-menu');
         const dropdowns = document.querySelectorAll('.dropdown');
 
-        hamburger.addEventListener('click', () => {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
             document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
@@ -816,6 +818,7 @@
             link.addEventListener('click', (e) => {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
+                    e.stopPropagation();
                     dropdown.classList.toggle('active');
                 }
             });
