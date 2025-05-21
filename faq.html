@@ -7,8 +7,7 @@
     <title>FAQ - Chelsea Heslop</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Atma:wght@400;500;600;700&family=Cherry+Bomb+One&family=Unkempt:wght@400;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@400;500;600;700&family=Cherry+Bomb+One&display=swap"
         rel="stylesheet">
     <style>
         :root {
@@ -37,28 +36,35 @@
 
         .header {
             text-align: center;
-            padding: 2rem 2rem 1rem;
+            padding: 0.7rem 2rem;
             background-color: var(--bg-light);
             border-bottom: 2px solid var(--primary);
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
-            max-width: 300px;
+            max-width: 140px;
             height: auto;
-            margin: 0 auto;
+            margin: 0;
             display: block;
             position: relative;
             border-radius: 2px;
         }
 
         .nav-menu {
-            margin-top: 1rem;
+            margin: 0;
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             gap: 2rem;
-            padding: 1rem 0;
-            background-color: var(--bg-light);
+            padding: 0;
+            background-color: transparent;
             align-items: center;
         }
 
@@ -162,9 +168,50 @@
         }
 
         .faq-container {
-            max-width: 800px;
-            margin: 3rem auto;
+            max-width: 1200px;
+            margin: 200px auto 3rem;
             padding: 0 2rem;
+            display: flex;
+            gap: 3rem;
+        }
+
+        .faq-sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .faq-content {
+            flex-grow: 1;
+        }
+
+        .section-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .section-nav-button {
+            background-color: var(--primary);
+            color: var(--text-light);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-family: 'Atma', cursive;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: left;
+        }
+
+        .search-container {
+            width: 100%;
+            margin: 0;
+            padding: 0;
         }
 
         .faq-item {
@@ -217,21 +264,24 @@
         }
 
         @media (max-width: 768px) {
-            .nav-menu {
+            .faq-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .faq-sidebar {
+                width: 100%;
+                position: static;
+            }
+
+            .section-nav {
+                flex-direction: row;
                 flex-wrap: wrap;
-                gap: 1rem;
+                justify-content: center;
             }
 
-            .nav-link {
-                font-size: 1rem;
-            }
-
-            .faq-question {
-                font-size: 1.3rem;
-            }
-
-            .faq-answer {
-                font-size: 1rem;
+            .section-nav-button {
+                text-align: center;
             }
         }
 
@@ -250,13 +300,64 @@
                 padding: 1.5rem;
             }
         }
+
+        .section-header {
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 3rem 0 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary);
+            text-align: center;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            font-family: 'Atma', cursive;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 10px rgba(139, 78, 155, 0.3);
+        }
+
+        .faq-item.hidden {
+            display: none;
+        }
+
+        .no-results {
+            text-align: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin: 2rem 0;
+            display: none;
+        }
+
+        .section-nav.hidden,
+        .section-header.hidden {
+            display: none;
+        }
+
+        .search-results {
+            margin-top: 2rem;
+        }
+
+        .highlight {
+            background-color: #FFD700;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
     <header class="header">
-        <img src="CHELSEA_LOGO.png" alt="Chelsea Heslop" class="logo">
+        <a href="index.html"><img src="CHELSEA_LOGO.png" alt="Chelsea Heslop" class="logo"></a>
         <button class="hamburger" aria-label="Toggle menu">
             <span></span>
             <span></span>
@@ -285,55 +386,230 @@
     </header>
 
     <main class="faq-container">
-        <div class="faq-item">
-            <h2 class="faq-question">How do I book a tattoo appointment?</h2>
-            <p class="faq-answer">You can book an appointment through my online booking form. Click the "Book a Tattoo"
-                button in the navigation menu to access the form. Please provide as much detail as possible about your
-                desired design, size, and placement.</p>
+        <div class="faq-sidebar">
+            <h1 style="text-align: left; color: var(--primary); margin-bottom: 2rem; font-size: 2rem;">Frequently Asked
+                Questions</h1>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for a question..." id="faqSearch">
+            </div>
+            <div class="no-results" id="noResults">No questions found matching your search.</div>
+
+            <div class="section-nav">
+                <a href="#booking" class="section-nav-button">✍️ Booking & Design</a>
+                <a href="#before" class="section-nav-button">⏰ Before the Appointment</a>
+                <a href="#conditions" class="section-nav-button">🤔 Can I Get Tattooed If...</a>
+                <a href="#aftercare" class="section-nav-button">🩹 Aftercare & Healing</a>
+            </div>
         </div>
 
-        <div class="faq-item">
-            <h2 class="faq-question">What is your minimum price?</h2>
-            <p class="faq-answer">My minimum price is £80. This covers small, simple designs that take approximately 1
-                hour to complete. Larger or more complex designs will be priced accordingly.</p>
-        </div>
+        <div class="faq-content">
+            <h2 id="booking" class="section-header">✍️ Booking & Design ✍️</h2>
 
-        <div class="faq-item">
-            <h2 class="faq-question">Do you do custom designs?</h2>
-            <p class="faq-answer">Yes! I specialize in custom designs and love creating unique pieces for my clients.
-                When booking, please provide reference images and describe your vision in detail.</p>
-        </div>
+            <div class="faq-item">
+                <h2 class="faq-question">How do I book an appointment with you?</h2>
+                <p class="faq-answer">You can book an appointment through my online booking form by clicking the "Book a
+                    Tattoo" button in the navigation menu. Please provide detailed information about your desired
+                    design,
+                    size, and placement to help me prepare for your session.</p>
+            </div>
 
-        <div class="faq-item">
-            <h2 class="faq-question">How should I prepare for my tattoo appointment?</h2>
-            <p class="faq-answer">Make sure to get a good night's sleep, eat a substantial meal before your appointment,
-                and stay hydrated. Avoid alcohol 24 hours before your appointment. Wear comfortable clothing that allows
-                easy access to the area being tattooed.</p>
-        </div>
+            <div class="faq-item">
+                <h2 class="faq-question">How far in advance are you booked up?</h2>
+                <p class="faq-answer">I typically book 2-3 months in advance. However, this can vary depending on the
+                    season
+                    and the complexity of the design. I recommend booking early to secure your preferred date.</p>
+            </div>
 
-        <div class="faq-item">
-            <h2 class="faq-question">What is your cancellation policy?</h2>
-            <p class="faq-answer">I require 48 hours notice for cancellations or rescheduling. Late cancellations may
-                result in a deposit being charged for future bookings.</p>
-        </div>
+            <div class="faq-item">
+                <h2 class="faq-question">Can I walk in, or do I need an appointment?</h2>
+                <p class="faq-answer">I work by appointment only to ensure I can give each client my full attention and
+                    prepare properly for their design. This helps maintain the quality of work and ensures a comfortable
+                    experience for everyone.</p>
+            </div>
 
-        <div class="faq-item">
-            <h2 class="faq-question">Do you require a deposit?</h2>
-            <p class="faq-answer">Yes, a £50 deposit is required to secure your appointment. This is non-refundable but
-                goes towards the final cost of your tattoo.</p>
-        </div>
+            <div class="faq-item">
+                <h2 class="faq-question">Do you offer consultations?</h2>
+                <p class="faq-answer">Yes, I offer free consultations for custom designs. This gives us a chance to
+                    discuss
+                    your ideas, review reference images, and ensure we're on the same page before your appointment.</p>
+            </div>
 
-        <div class="faq-item">
-            <h2 class="faq-question">How do I take care of my new tattoo?</h2>
-            <p class="faq-answer">I'll provide detailed aftercare instructions after your appointment. Generally, you'll
-                need to keep the tattoo clean, moisturized, and out of direct sunlight. Avoid swimming, soaking, and
-                picking at the tattoo during the healing process.</p>
-        </div>
+            <div class="faq-item">
+                <h2 class="faq-question">How much does a tattoo cost?</h2>
+                <p class="faq-answer">My minimum price is £80 for small, simple designs. Larger or more complex pieces
+                    are
+                    priced based on size, detail, and time required. I'll provide a quote after reviewing your design
+                    request.</p>
+            </div>
 
-        <div class="faq-item">
-            <h2 class="faq-question">Do you do cover-ups?</h2>
-            <p class="faq-answer">Yes, I do cover-ups. However, they require careful consideration and planning. Please
-                send photos of the existing tattoo when booking, and we can discuss the possibilities.</p>
+            <div class="faq-item">
+                <h2 class="faq-question">Can you copy a tattoo I found online?</h2>
+                <p class="faq-answer">I don't copy other artists' work directly, as this would be copyright
+                    infringement.
+                    However, I'm happy to use it as inspiration to create a unique design that captures the elements you
+                    love while being original.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Can I bring my own design?</h2>
+                <p class="faq-answer">Absolutely! I welcome client designs and can help refine them to work well as a
+                    tattoo. I'll review your design and suggest any necessary adjustments to ensure it translates well
+                    to
+                    skin.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Can I see the design before the appointment?</h2>
+                <p class="faq-answer">Yes, I'll share the design with you before your appointment. This allows time for
+                    any
+                    adjustments to ensure you're completely happy with the design before we start.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">How long will the tattoo take?</h2>
+                <p class="faq-answer">The duration depends on the size and complexity of the design. Small pieces might
+                    take
+                    1-2 hours, while larger pieces could take multiple sessions. I'll give you a time estimate when you
+                    book.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">What's your cancellation or reschedule policy?</h2>
+                <p class="faq-answer">I require 48 hours notice for cancellations or rescheduling. Late cancellations
+                    may
+                    result in a deposit being charged for future bookings. This helps me manage my schedule and
+                    accommodate
+                    other clients.</p>
+            </div>
+
+            <h2 id="before" class="section-header">⏰ Before the Appointment ⏰</h2>
+
+            <div class="faq-item">
+                <h2 class="faq-question">How should I prepare for my tattoo appointment?</h2>
+                <p class="faq-answer">Get a good night's sleep, eat a substantial meal before your appointment, and stay
+                    hydrated. Avoid alcohol 24 hours before your appointment. Make sure the area to be tattooed is clean
+                    and
+                    well-rested.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">What should I wear to my tattoo session?</h2>
+                <p class="faq-answer">Wear comfortable, loose-fitting clothing that allows easy access to the area being
+                    tattooed. Dark colors are recommended as they're less likely to show ink stains.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Should I shave before my appointment or will the artist do it?</h2>
+                <p class="faq-answer">I'll handle the shaving as part of the preparation process. This ensures the area
+                    is
+                    properly prepared and reduces the risk of irritation.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Can I bring a friend with me to the studio?</h2>
+                <p class="faq-answer">Yes, you can bring one friend for support. However, please note that space is
+                    limited,
+                    and they should be prepared to wait quietly during the session.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Do I need to eat before getting tattooed?</h2>
+                <p class="faq-answer">Yes, it's very important to eat a substantial meal before your appointment. This
+                    helps
+                    maintain your blood sugar levels and makes the experience more comfortable.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Can I drink alcohol the night before my appointment?</h2>
+                <p class="faq-answer">No, please avoid alcohol for at least 24 hours before your appointment. Alcohol
+                    thins
+                    the blood and can affect the tattooing process and healing.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Can you tattoo over scars or stretch marks?</h2>
+                <p class="faq-answer">Yes, I can tattoo over scars and stretch marks, but it depends on their age and
+                    condition. I'll assess the area during the consultation to determine the best approach.</p>
+            </div>
+
+            <h2 id="conditions" class="section-header">🤔 Can I Get Tattooed If... 🤔</h2>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Can I get tattooed if I'm pregnant or breastfeeding?</h2>
+                <p class="faq-answer">No, I don't tattoo pregnant or breastfeeding individuals as it could pose health
+                    risks. Please wait until after you've finished breastfeeding to get tattooed.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Can I get tattooed if I have a disability or medical condition?</h2>
+                <p class="faq-answer">Please let me know about any disabilities or medical conditions during booking.
+                    I'll
+                    work with you to ensure a comfortable experience and may request a doctor's note for certain
+                    conditions.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Can I get tattooed if I'm feeling unwell or have a cold?</h2>
+                <p class="faq-answer">No, please reschedule if you're feeling unwell. Getting tattooed while sick can
+                    affect
+                    your immune system and the healing process.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Can I get tattooed if I'm under 18 with parental consent?</h2>
+                <p class="faq-answer">No, I only tattoo clients who are 18 years or older, regardless of parental
+                    consent.
+                    This is for legal and ethical reasons.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Can I get tattooed if I have allergies or sensitive skin?</h2>
+                <p class="faq-answer">Please inform me of any allergies or skin conditions during booking. I use
+                    hypoallergenic inks and can perform a patch test if needed.</p>
+            </div>
+
+            <h2 id="aftercare" class="section-header">🩹 Aftercare & Healing 🩹</h2>
+
+            <div class="faq-item">
+                <h2 class="faq-question">How do I take care of my new tattoo?</h2>
+                <p class="faq-answer">I'll provide detailed aftercare instructions after your appointment. Generally,
+                    you'll
+                    need to keep the tattoo clean, moisturized, and out of direct sunlight. Avoid swimming, soaking, and
+                    picking at the tattoo during healing.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Is it normal for my tattoo to scab or peel?</h2>
+                <p class="faq-answer">Yes, scabbing and peeling are normal parts of the healing process. However, if you
+                    notice excessive scabbing or unusual symptoms, please contact me immediately.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">What should I avoid while my tattoo is healing?</h2>
+                <p class="faq-answer">Avoid swimming, sun exposure, tight clothing, and picking at the tattoo. Don't
+                    apply
+                    any products not recommended by me, and keep the area clean and moisturized.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Can I go swimming after getting a tattoo?</h2>
+                <p class="faq-answer">No, you should avoid swimming for at least 2 weeks after getting tattooed. This
+                    includes pools, oceans, and hot tubs to prevent infection and color loss.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">When can I work out after getting tattooed?</h2>
+                <p class="faq-answer">Wait at least 48 hours before light exercise, and avoid activities that cause
+                    excessive sweating or friction on the tattooed area. Full workouts can resume after 2 weeks.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2 class="faq-question">Do I need a touch-up?</h2>
+                <p class="faq-answer">Most tattoos heal well without touch-ups, but I offer one free touch-up within 3
+                    months if needed. This ensures your tattoo looks its best for years to come.</p>
+            </div>
         </div>
     </main>
 
@@ -409,6 +685,69 @@
                 document.body.style.overflow = '';
                 dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
             }
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('faqSearch');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const noResults = document.getElementById('noResults');
+        const sectionNav = document.querySelector('.section-nav');
+        const sectionHeaders = document.querySelectorAll('.section-header');
+
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+
+        searchInput.addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
+            let hasResults = false;
+
+            // Show/hide navigation and headers based on search
+            if (searchTerm.length > 0) {
+                sectionNav.classList.add('hidden');
+                sectionHeaders.forEach(header => header.classList.add('hidden'));
+            } else {
+                sectionNav.classList.remove('hidden');
+                sectionHeaders.forEach(header => header.classList.remove('hidden'));
+            }
+
+            faqItems.forEach(item => {
+                const questionElement = item.querySelector('.faq-question');
+                const answerElement = item.querySelector('.faq-answer');
+                const question = questionElement.textContent.toLowerCase();
+                const answer = answerElement.textContent.toLowerCase();
+
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.classList.remove('hidden');
+                    hasResults = true;
+
+                    // Highlight matching text
+                    if (searchTerm) {
+                        questionElement.innerHTML = highlightText(questionElement.textContent, searchTerm);
+                        answerElement.innerHTML = highlightText(answerElement.textContent, searchTerm);
+                    } else {
+                        // Reset to original text when search is cleared
+                        questionElement.innerHTML = questionElement.textContent;
+                        answerElement.innerHTML = answerElement.textContent;
+                    }
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            noResults.style.display = hasResults ? 'none' : 'block';
+        });
+
+        // Smooth scrolling for section navigation
+        document.querySelectorAll('.section-nav-button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
         });
     </script>
 

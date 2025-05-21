@@ -37,28 +37,35 @@
 
         .header {
             text-align: center;
-            padding: 2rem 2rem 1rem;
+            padding: 0.7rem 2rem;
             background-color: var(--bg-light);
             border-bottom: 2px solid var(--primary);
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
-            max-width: 300px;
+            max-width: 140px;
             height: auto;
-            margin: 0 auto;
+            margin: 0;
             display: block;
             position: relative;
             border-radius: 2px;
         }
 
         .nav-menu {
-            margin-top: 1rem;
+            margin: 0;
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             gap: 2rem;
-            padding: 1rem 0;
-            background-color: var(--bg-light);
+            padding: 0;
+            background-color: transparent;
             align-items: center;
         }
 
@@ -170,7 +177,7 @@
 
         .content-container {
             max-width: 1200px;
-            margin: 3rem auto;
+            margin: 200px auto 3rem;
             padding: 0 2rem;
             display: flex;
             gap: 3rem;
@@ -319,7 +326,7 @@
 
 <body>
     <header class="header">
-        <img src="CHELSEA_LOGO.png" alt="Chelsea Heslop" class="logo">
+        <a href="index.html"><img src="CHELSEA_LOGO.png" alt="Chelsea Heslop" class="logo"></a>
         <button class="hamburger" aria-label="Toggle menu">
             <span></span>
             <span></span>

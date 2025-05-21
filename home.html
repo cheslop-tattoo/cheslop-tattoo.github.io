@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tattoos - Chelsea Heslop</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Chelsea Heslop - Tattoo Artist</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Atma:wght@400;500;600;700&family=Cherry+Bomb+One&family=Unkempt:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: rgb(139, 78, 155);
@@ -17,6 +18,7 @@
             --text-dark: rgb(40, 40, 40);
             --text-light: rgb(255, 255, 255);
             --cursor-color: rgb(255, 105, 180);
+            /* Hot pink color for cursor */
         }
 
         * {
@@ -33,6 +35,41 @@
             display: flex;
             flex-direction: column;
             color: var(--text-dark);
+            position: relative;
+        }
+
+        .welcome-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('halloween_cats.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .welcome-text {
+            font-family: 'Cherry Bomb One', cursive;
+            font-size: 4rem;
+            color: var(--primary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            line-height: 1.2;
         }
 
         .header {
@@ -50,6 +87,27 @@
             align-items: center;
         }
 
+        .footer {
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            text-align: center;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: auto;
+            font-family: 'Atma', cursive;
+        }
+
+        .social-icon {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icon:hover {
+            opacity: 0.8;
+        }
+
         .logo {
             max-width: 140px;
             height: auto;
@@ -57,52 +115,6 @@
             display: block;
             position: relative;
             border-radius: 2px;
-        }
-
-        /* Remove logo animation styles */
-        .logo::before {
-            display: none;
-        }
-
-        .logo:hover {
-            transform: none;
-        }
-
-        .logo:hover::before {
-            animation: none;
-        }
-
-        @keyframes shine {
-            0% {
-                left: -100%;
-            }
-
-            100% {
-                left: 200%;
-            }
-        }
-
-        h1 {
-            font-family: 'Cherry Bomb One', cursive;
-            font-size: 3rem;
-            color: var(--primary);
-            font-weight: 400;
-            margin-bottom: 0.25rem;
-            text-align: right;
-            padding-right: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .subtitle {
-            font-family: 'Unkempt', cursive;
-            font-size: 2rem;
-            color: var(--text-dark);
-            text-align: right;
-            padding-right: 2rem;
-            margin-bottom: 1rem;
-            text-transform: lowercase;
-            letter-spacing: 0.05em;
         }
 
         .nav-menu {
@@ -167,6 +179,46 @@
         .hamburger.active span:nth-child(3) {
             top: 10px;
             transform: rotate(-135deg);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: block;
+            position: absolute;
+            background-color: var(--bg-light);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            font-family: 'Atma', cursive;
+            color: var(--text-dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--primary);
+            color: white;
         }
 
         .nav-link {
@@ -285,18 +337,6 @@
             }
         }
 
-        .tattoos-content {
-            max-width: 1400px;
-            margin: 200px auto 3rem;
-            padding: 0 2rem;
-        }
-
-        .tattoos-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
         .portfolio-item {
             position: relative;
             overflow: hidden;
@@ -330,16 +370,21 @@
             animation: shine 1s ease-out;
         }
 
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 200%;
+            }
+        }
+
         .portfolio-item img {
             width: 100%;
             height: 100%;
             display: block;
             object-fit: cover;
-        }
-
-        /* Remove tattoo-info styles */
-        .tattoo-info {
-            display: none;
         }
 
         /* Modal styles */
@@ -398,14 +443,23 @@
 
         @media (max-width: 768px) {
             .header {
-                padding: 1rem;
+                padding: 0.7rem 1rem;
             }
 
             .logo {
-                max-width: 200px;
+                max-width: 100px;
+            }
+
+            .hamburger {
+                display: block;
+                position: relative;
+                top: 0;
+                right: 0;
             }
 
             .nav-menu {
+                display: flex;
+                flex-direction: column;
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -413,14 +467,13 @@
                 bottom: 0;
                 background-color: var(--bg-light);
                 padding: 6rem 2rem 2rem;
-                z-index: 1000;
-                opacity: 0;
+                z-index: 999;
                 visibility: hidden;
+                opacity: 0;
                 transform: translateY(-20px);
-                transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-                justify-content: center;
+                transition: all 0.3s ease;
+                justify-content: flex-start;
                 gap: 1rem;
-                flex-direction: column;
             }
 
             .nav-menu.active {
@@ -482,7 +535,7 @@
         }
 
         @media (max-width: 480px) {
-            .tattoos-grid {
+            .portfolio-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
@@ -494,62 +547,218 @@
             }
         }
 
-        .dropdown-content {
-            display: block;
+        .rat-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            animation: fadeOut 3s forwards;
+        }
+
+        .rat {
             position: absolute;
-            background-color: var(--bg-light);
-            min-width: 160px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            z-index: 1;
-            border-radius: 4px;
-            overflow: hidden;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
+            font-size: 24px;
+            animation: fall linear forwards;
         }
 
-        .dropdown:hover .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
         }
 
-        .dropdown-content a {
-            font-family: 'Atma', cursive;
-            color: var(--text-dark);
-            padding: 12px 16px;
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .instagram-link {
+            color: var(--primary);
+            font-size: 1.2rem;
             text-decoration: none;
-            display: block;
-            transition: background-color 0.3s ease;
+            transition: opacity 0.3s ease;
+            margin-left: 1rem;
         }
 
-        .dropdown-content a:hover {
-            background-color: var(--primary);
-            color: white;
+        .instagram-link:hover {
+            opacity: 0.8;
         }
 
-        .footer {
-            background-color: var(--primary);
-            padding: 1rem 2rem;
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            z-index: 2;
             text-align: center;
-            color: white;
-            font-size: 0.9rem;
-            margin-top: auto;
+        }
+
+        .watermark-text {
+            font-family: 'Atma', cursive;
+            font-size: 6rem;
+            color: rgba(139, 78, 155, 0.15);
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        @media (max-width: 768px) {
+            .watermark-text {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .watermark-text {
+                font-size: 3rem;
+            }
+        }
+
+        .hero-section {
+            display: flex;
+            align-items: center;
+            gap: 3.4rem;
+            padding: 3.4rem 2rem;
+            max-width: 1360px;
+            margin: 0 auto;
+            margin-top: 200px;
+        }
+
+        .hero-image-container {
+            flex: 1.5;
+            width: 400px !important;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            aspect-ratio: 1;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            display: block;
+        }
+
+        .hero-image.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding: 1.7rem;
+            min-width: 280px;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Atma', cursive;
+            font-size: 2.55rem;
+            color: var(--primary);
+            margin-bottom: 1.3rem;
+            line-height: 1.2;
+        }
+
+        .hero-text {
+            font-family: 'Atma', cursive;
+            font-size: 1.02rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin-bottom: 1.7rem;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.85rem 1.7rem;
+            border-radius: 25px;
+            font-family: 'Atma', cursive;
+            font-size: 1.02rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 0 #8B4E9B;
+        }
+
+        .hero-cta:hover {
+            background-color: #FFD700;
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #D4AF37;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                gap: 1.7rem;
+                padding: 1.7rem 1rem;
+                margin-top: 160px;
+            }
+
+            .hero-image-container {
+                width: 100% !important;
+                max-width: 400px !important;
+                margin: 0 auto;
+                aspect-ratio: 1;
+            }
+
+            .hero-content {
+                padding: 0.85rem;
+                text-align: center;
+                min-width: unset;
+            }
+
+            .hero-title {
+                font-size: 2.125rem;
+            }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
     <header class="header">
-        <a href="index.html"><img src="CHELSEA_LOGO.png" alt="Chelsea Heslop" class="logo"></a>
+        <a href="index.html">
+            <img src="CHELSEA_LOGO.png" alt="Chelsea Heslop" class="logo">
+        </a>
         <button class="hamburger" aria-label="Toggle menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
         <nav class="nav-menu">
-            <a href="index.html" class="nav-link">Home</a>
+            <a href="home.html" class="nav-link">Home</a>
             <div class="dropdown">
                 <a href="about.html" class="nav-link">About</a>
                 <div class="dropdown-content">
@@ -570,116 +779,53 @@
         </nav>
     </header>
 
-    <main class="tattoos-content">
-        <div class="tattoos-grid">
-            <div class="portfolio-item">
-                <img src="haku.jpeg" alt="Haku" onclick="openModal(this.src)">
-            </div>
-            <div class="portfolio-item">
-                <img src="feathers_basic.jpeg" alt="Feathers Basic Design" onclick="openModal(this.src)">
-            </div>
-            <div class="portfolio-item">
-                <img src="scar.jpeg" alt="Scar Design" onclick="openModal(this.src)">
-            </div>
-            <div class="portfolio-item">
-                <img src="little_prince.jpeg" alt="Little Prince" onclick="openModal(this.src)">
-            </div>
-            <div class="portfolio-item">
-                <img src="rat_with_daisies.jpeg" alt="Rat with Daisies" onclick="openModal(this.src)">
-            </div>
-            <div class="portfolio-item">
-                <img src="halloween_cats.jpeg" alt="Halloween Cats" onclick="openModal(this.src)">
-            </div>
-            <div class="portfolio-item">
-                <img src="gatomon.jpeg" alt="Gatomon" onclick="openModal(this.src)">
-            </div>
-            <div class="portfolio-item">
-                <img src="kirby_link.jpeg" alt="Kirby Link" onclick="openModal(this.src)">
-            </div>
+    <section class="hero-section">
+        <div class="hero-image-container">
+            <img src="halloween_cats.jpeg" alt="Halloween Cats" class="hero-image active">
+            <img src="haku.jpeg" alt="Haku" class="hero-image">
+            <img src="feathers_basic.jpeg" alt="Feathers Basic Design" class="hero-image">
+            <img src="scar.jpeg" alt="Scar Design" class="hero-image">
+            <img src="little_prince.jpeg" alt="Little Prince" class="hero-image">
+            <img src="rat_with_daisies.jpeg" alt="Rat with Daisies" class="hero-image">
+            <img src="gatomon.jpeg" alt="Gatomon" class="hero-image">
+            <img src="kirby_link.jpeg" alt="Kirby Link" class="hero-image">
         </div>
-    </main>
-
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="close-modal">&times;</span>
-        <div class="modal-content">
-            <img id="modalImage" src="" alt="Enlarged view">
+        <div class="hero-content">
+            <h1 class="hero-title">Art? Cartoons? Tattoos?<br>I got you.</h1>
+            <p class="hero-text">Hey there! I'm Chelsea, a tattoo artist and illustrator based in Edinburgh. I blend
+                bold linework with vibrant colors to create unique, character-driven designs that tell your story.
+                Whether you're looking for a pop culture tribute, a pet portrait, or something entirely original, I'm
+                here to bring your ideas to life.</p>
+            <a href="https://form.jotform.com/213444836846363" class="hero-cta" target="_blank">Book a Tattoo</a>
         </div>
-    </div>
+    </section>
 
     <footer class="footer">
         © 2025 Chelsea Heslop. All rights reserved.
     </footer>
 
     <script>
-        // Modal functionality
-        function openModal(imgSrc) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            modal.style.display = "block";
-            modalImg.src = imgSrc;
-            // Trigger reflow
-            modal.offsetHeight;
-            modal.classList.add('show');
+        // Slideshow functionality
+        const images = document.querySelectorAll('.hero-image');
+        let currentIndex = 0;
+        const slideDuration = 5000; // 5 seconds per image
+
+        function nextSlide() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
         }
 
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.classList.remove('show');
-            setTimeout(() => {
-                modal.style.display = "none";
-            }, 300); // Match transition duration
-        }
-
-        // Close modal when clicking the close button
-        document.querySelector('.close-modal').onclick = function (e) {
-            e.stopPropagation();
-            closeModal();
-        }
-
-        // Close modal when pressing Escape key
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Mouse emoji explosion
-        document.querySelector('.book-button').addEventListener('mouseover', function (e) {
-            const button = e.target;
-            const rect = button.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-
-            for (let i = 0; i < 8; i++) {
-                const emoji = document.createElement('div');
-                emoji.className = 'mouse-emoji';
-                emoji.textContent = '🐭';
-
-                // Random angle and distance for explosion
-                const angle = (i * 45) + Math.random() * 30;
-                const distance = 100 + Math.random() * 50;
-                const tx = Math.cos(angle * Math.PI / 180) * distance;
-                const ty = Math.sin(angle * Math.PI / 180) * distance;
-
-                emoji.style.setProperty('--tx', `${tx}px`);
-                emoji.style.setProperty('--ty', `${ty}px`);
-
-                emoji.style.left = `${centerX}px`;
-                emoji.style.top = `${centerY}px`;
-
-                document.body.appendChild(emoji);
-
-                // Remove emoji after animation
-                setTimeout(() => emoji.remove(), 500);
-            }
-        });
+        // Start slideshow
+        setInterval(nextSlide, slideDuration);
 
         // Mobile menu functionality
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
         const dropdowns = document.querySelectorAll('.dropdown');
 
-        hamburger.addEventListener('click', () => {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
             document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
@@ -691,6 +837,7 @@
             link.addEventListener('click', (e) => {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
+                    e.stopPropagation();
                     dropdown.classList.toggle('active');
                 }
             });

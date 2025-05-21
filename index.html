@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chelsea Heslop - Tattoo Artist</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Chelsea Heslop - Welcome</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,249 +18,168 @@
             --text-dark: rgb(40, 40, 40);
             --text-light: rgb(255, 255, 255);
             --cursor-color: rgb(255, 105, 180);
-            /* Hot pink color for cursor */
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ff69b4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z'/></svg>") 0 24, auto;
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ff1493' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z'/></svg>") 0 24, auto;
         }
 
         body {
-            font-family: 'Unkempt', cursive;
-            background-color: var(--bg-light);
+            font-family: 'Atma', cursive;
+            background: linear-gradient(to bottom, var(--primary), rgb(229, 186, 189));
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
             color: var(--text-dark);
             position: relative;
-        }
-
-        .welcome-section {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
             overflow: hidden;
         }
 
-        .welcome-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('halloween_cats.jpeg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.1;
-            z-index: -1;
-        }
-
-        .welcome-text {
-            font-family: 'Cherry Bomb One', cursive;
-            font-size: 4rem;
-            color: var(--primary);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            line-height: 1.2;
-        }
-
-        .header {
-            text-align: center;
-            padding: 0.7rem 2rem;
-            background-color: var(--bg-light);
-            border-bottom: 2px solid var(--primary);
+        .mouse-rain {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        .footer {
-            background-color: var(--primary);
-            padding: 1rem 2rem;
+        .mouse {
+            position: absolute;
+            font-size: 48px;
+            animation: fall linear forwards, fadeIn 1s ease-out;
+            opacity: 0;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .landing-content {
             text-align: center;
-            color: white;
-            font-size: 0.9rem;
-            margin-top: auto;
-            font-family: 'Atma', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
         }
 
-        .social-icon {
-            color: white;
+        .speech-bubble {
+            position: absolute;
+            top: -60px;
+            background: white;
+            padding: 12px 16px;
+            border: 3px solid var(--text-dark);
             font-size: 1.2rem;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
+            color: var(--text-dark);
+            opacity: 0;
+            transform: scale(0.5) translateY(20px);
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
+                float 2s ease-in-out infinite 0.5s,
+                popOut 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 4s;
+            image-rendering: pixelated;
+            box-shadow: 4px 4px 0 var(--text-dark);
         }
 
-        .social-icon:hover {
-            opacity: 0.8;
+        .speech-bubble:before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 15px solid var(--text-dark);
+        }
+
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 15px solid white;
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes popOut {
+            0% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.5) translateY(-20px);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .logo {
-            max-width: 140px;
+            max-width: 400px;
             height: auto;
-            margin: 0;
+            margin: 0 auto;
             display: block;
             position: relative;
             border-radius: 2px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
         }
 
-        .nav-menu {
-            margin: 0;
-            display: flex;
-            justify-content: flex-end;
-            gap: 2rem;
-            padding: 0;
-            background-color: transparent;
-            align-items: center;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            position: relative;
-            width: 30px;
-            height: 30px;
-            z-index: 1001;
-        }
-
-        .hamburger span {
-            display: block;
-            position: absolute;
-            height: 2px;
-            width: 100%;
-            background: var(--text-dark);
-            border-radius: 2px;
-            opacity: 1;
-            left: 0;
-            transform: rotate(0deg);
-            transition: .25s ease-in-out;
-        }
-
-        .hamburger span:nth-child(1) {
-            top: 0px;
-        }
-
-        .hamburger span:nth-child(2) {
-            top: 10px;
-        }
-
-        .hamburger span:nth-child(3) {
-            top: 20px;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            top: 10px;
-            transform: rotate(135deg);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-            left: -60px;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            top: 10px;
-            transform: rotate(-135deg);
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: block;
-            position: absolute;
-            background-color: var(--bg-light);
-            min-width: 160px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            z-index: 1;
-            border-radius: 4px;
-            overflow: hidden;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-content a {
-            font-family: 'Atma', cursive;
-            color: var(--text-dark);
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.3s ease;
-        }
-
-        .dropdown-content a:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .nav-link {
-            font-family: 'Atma', cursive;
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            padding: 0.5rem 1rem;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-link:hover {
-            color: var(--primary);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .book-button {
+        .enter-button {
             background-color: var(--primary);
             color: var(--text-light);
             text-decoration: none;
-            padding: 0.8rem 1.5rem;
+            padding: 1rem 3rem;
             border-radius: 25px;
             font-family: 'Atma', cursive;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             position: relative;
@@ -269,7 +191,7 @@
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        .book-button:hover {
+        .enter-button:hover {
             background-color: #FFD700;
             box-shadow: 0 2px 0 #D4AF37,
                 0 3px 5px rgba(0, 0, 0, 0.2);
@@ -277,14 +199,14 @@
             border-color: rgba(255, 255, 255, 0.5);
         }
 
-        .book-button:active {
+        .enter-button:active {
             box-shadow: 0 1px 0 #D4AF37,
                 0 2px 3px rgba(0, 0, 0, 0.2);
             transform: translateY(3px);
             border-color: rgba(255, 255, 255, 0.7);
         }
 
-        .book-button::before {
+        .enter-button::before {
             content: '';
             position: absolute;
             top: 0;
@@ -300,28 +222,8 @@
             pointer-events: none;
         }
 
-        .book-button:hover::before {
+        .enter-button:hover::before {
             animation: buttonShine 0.75s ease-out;
-        }
-
-        .mouse-emoji {
-            position: absolute;
-            pointer-events: none;
-            font-size: 20px;
-            animation: explode 0.5s ease-out forwards;
-            z-index: 2;
-        }
-
-        @keyframes explode {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translate(var(--tx), var(--ty)) scale(0);
-                opacity: 0;
-            }
         }
 
         @keyframes buttonShine {
@@ -334,514 +236,176 @@
             }
         }
 
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 2px;
-            transition: transform 0.3s ease;
-            aspect-ratio: 1;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .portfolio-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right,
-                    rgba(255, 255, 255, 0) 0%,
-                    rgba(255, 255, 255, 0.3) 50%,
-                    rgba(255, 255, 255, 0) 100%);
-            transform: skewX(-25deg);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .portfolio-item:hover {
-            transform: scale(1.02);
-        }
-
-        .portfolio-item:hover::before {
-            animation: shine 1s ease-out;
-        }
-
-        @keyframes shine {
-            0% {
-                left: -100%;
-            }
-
-            100% {
-                left: 200%;
-            }
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-        }
-
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.98);
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal.show {
-            opacity: 1;
-        }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            margin: auto;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal.show .modal-content {
-            opacity: 1;
-        }
-
-        .modal-content img {
-            max-width: 100%;
-            max-height: 90vh;
-            object-fit: contain;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: var(--text-dark);
-            font-size: 2rem;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-
-        .close-modal:hover {
-            opacity: 1;
-        }
-
         @media (max-width: 768px) {
-            .header {
-                padding: 0.7rem 1rem;
-            }
-
             .logo {
-                max-width: 100px;
+                max-width: 300px;
             }
 
-            .hamburger {
-                display: block;
-                position: relative;
-                top: 0;
-                right: 0;
-            }
-
-            .nav-menu {
-                display: flex;
-                flex-direction: column;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: var(--bg-light);
-                padding: 6rem 2rem 2rem;
-                z-index: 999;
-                visibility: hidden;
-                opacity: 0;
-                transform: translateY(-20px);
-                transition: all 0.3s ease;
-                justify-content: flex-start;
-                gap: 1rem;
-            }
-
-            .nav-menu.active {
-                visibility: visible;
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .nav-link {
-                width: 100%;
-                text-align: center;
-                padding: 1.2rem 1rem;
-                font-size: 1.5rem;
-                margin: 0;
-            }
-
-            .dropdown {
-                width: 100%;
-            }
-
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                display: none;
-                padding: 0.5rem 0;
-                background: rgba(139, 78, 155, 0.1);
-                border-radius: 8px;
-                margin: 0.5rem 0;
-            }
-
-            .dropdown.active .dropdown-content {
-                display: block;
-            }
-
-            .dropdown:hover .dropdown-content {
-                display: none;
-            }
-
-            .dropdown-content a {
-                text-align: center;
+            .enter-button {
                 font-size: 1.2rem;
-                padding: 0.8rem 1rem;
-                color: var(--primary);
-                font-weight: 500;
-            }
-
-            .dropdown-content a:hover {
-                background-color: rgba(139, 78, 155, 0.2);
-            }
-
-            .book-button {
-                margin-top: 1rem;
-                font-size: 1.5rem;
-                padding: 1rem 2rem;
+                padding: 0.8rem 2rem;
             }
         }
 
-        @media (max-width: 480px) {
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .nav-menu {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
-            }
-        }
-
-        .rat-rain {
+        .page-transition {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            background: var(--primary);
             z-index: 1000;
-            animation: fadeOut 3s forwards;
-        }
-
-        .rat {
-            position: absolute;
-            font-size: 24px;
-            animation: fall linear forwards;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-            }
-        }
-
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
-
-            to {
-                opacity: 0;
-            }
-        }
-
-        .instagram-link {
-            color: var(--primary);
-            font-size: 1.2rem;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-            margin-left: 1rem;
-        }
-
-        .instagram-link:hover {
-            opacity: 0.8;
-        }
-
-        .watermark {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .watermark-text {
-            font-family: 'Atma', cursive;
-            font-size: 6rem;
-            color: rgba(139, 78, 155, 0.15);
-            white-space: nowrap;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        @media (max-width: 768px) {
-            .watermark-text {
-                font-size: 4rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .watermark-text {
-                font-size: 3rem;
-            }
-        }
-
-        .hero-section {
-            display: flex;
-            align-items: center;
-            gap: 3.4rem;
-            padding: 3.4rem 2rem;
-            max-width: 1360px;
-            margin: 0 auto;
-            margin-top: 200px;
-        }
-
-        .hero-image-container {
-            flex: 1.5;
-            width: 400px !important;
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            aspect-ratio: 1;
-        }
-
-        .hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
             opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            display: block;
+            pointer-events: none;
+            transition: opacity 0.5s ease-out;
         }
 
-        .hero-image.active {
+        .page-transition.active {
             opacity: 1;
-            z-index: 1;
-        }
-
-        .hero-content {
-            flex: 1;
-            padding: 1.7rem;
-            min-width: 280px;
-        }
-
-        .hero-title {
-            font-family: 'Atma', cursive;
-            font-size: 2.55rem;
-            color: var(--primary);
-            margin-bottom: 1.3rem;
-            line-height: 1.2;
-        }
-
-        .hero-text {
-            font-family: 'Atma', cursive;
-            font-size: 1.02rem;
-            line-height: 1.6;
-            color: var(--text-dark);
-            margin-bottom: 1.7rem;
-        }
-
-        .hero-cta {
-            display: inline-block;
-            background-color: var(--primary);
-            color: var(--text-light);
-            text-decoration: none;
-            padding: 0.85rem 1.7rem;
-            border-radius: 25px;
-            font-family: 'Atma', cursive;
-            font-size: 1.02rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 0 #8B4E9B;
-        }
-
-        .hero-cta:hover {
-            background-color: #FFD700;
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 #D4AF37;
-        }
-
-        @media (max-width: 768px) {
-            .hero-section {
-                flex-direction: column;
-                gap: 1.7rem;
-                padding: 1.7rem 1rem;
-                margin-top: 160px;
-            }
-
-            .hero-image-container {
-                width: 100% !important;
-                max-width: 400px !important;
-                margin: 0 auto;
-                aspect-ratio: 1;
-            }
-
-            .hero-content {
-                padding: 0.85rem;
-                text-align: center;
-                min-width: unset;
-            }
-
-            .hero-title {
-                font-size: 2.125rem;
-            }
+            pointer-events: all;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
-    <header class="header">
+    <div class="mouse-rain" style="z-index: 1;"></div>
+    <div class="landing-content" style="z-index: 2;">
+        <div class="speech-bubble">Click to draw anywhere!</div>
         <img src="CHELSEA_LOGO.png" alt="Chelsea Heslop" class="logo">
-        <button class="hamburger" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <nav class="nav-menu">
-            <a href="index.html" class="nav-link">Home</a>
-            <div class="dropdown">
-                <a href="about.html" class="nav-link">About</a>
-                <div class="dropdown-content">
-                    <a href="about.html">About Me</a>
-                    <a href="travel.html">Travel Plans</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <a href="tattoos.html" class="nav-link">Tattoos</a>
-                <div class="dropdown-content">
-                    <a href="tattoos.html">Gallery</a>
-                    <a href="faq.html">FAQ</a>
-                </div>
-            </div>
-            <a href="illustration.html" class="nav-link">Illustration</a>
-            <a href="https://chelseaheslop.bigcartel.com/" class="nav-link">Store</a>
-            <a href="https://form.jotform.com/213444836846363" class="book-button" target="_blank">Book a Tattoo</a>
-        </nav>
-    </header>
-
-    <section class="hero-section">
-        <div class="hero-image-container">
-            <img src="halloween_cats.jpeg" alt="Halloween Cats" class="hero-image active">
-            <img src="haku.jpeg" alt="Haku" class="hero-image">
-            <img src="feathers_basic.jpeg" alt="Feathers Basic Design" class="hero-image">
-            <img src="scar.jpeg" alt="Scar Design" class="hero-image">
-            <img src="little_prince.jpeg" alt="Little Prince" class="hero-image">
-            <img src="rat_with_daisies.jpeg" alt="Rat with Daisies" class="hero-image">
-            <img src="gatomon.jpeg" alt="Gatomon" class="hero-image">
-            <img src="kirby_link.jpeg" alt="Kirby Link" class="hero-image">
-        </div>
-        <div class="hero-content">
-            <h1 class="hero-title">Art? Cartoons? Tattoos?<br>I got you.</h1>
-            <p class="hero-text">Hey there! I'm Chelsea, a tattoo artist and illustrator based in Edinburgh. I blend
-                bold linework with vibrant colors to create unique, character-driven designs that tell your story.
-                Whether you're looking for a pop culture tribute, a pet portrait, or something entirely original, I'm
-                here to bring your ideas to life.</p>
-            <a href="https://form.jotform.com/213444836846363" class="hero-cta" target="_blank">Book a Tattoo</a>
-        </div>
-    </section>
-
-    <footer class="footer">
-        © 2025 Chelsea Heslop. All rights reserved.
-    </footer>
+    </div>
+    <canvas id="drawingCanvas"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;"></canvas>
+    <a href="home.html" class="enter-button" style="position: relative; z-index: 3;">Enter</a>
 
     <script>
-        // Slideshow functionality
-        const images = document.querySelectorAll('.hero-image');
-        let currentIndex = 0;
-        const slideDuration = 5000; // 5 seconds per image
+        // Drawing functionality
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        let lines = []; // Store all drawn lines
 
-        function nextSlide() {
-            images[currentIndex].classList.remove('active');
-            currentIndex = (currentIndex + 1) % images.length;
-            images[currentIndex].classList.add('active');
+        // Set canvas size to match window size
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Drawing event listeners
+        document.addEventListener('mousedown', startDrawing);
+        document.addEventListener('mousemove', draw);
+        document.addEventListener('mouseup', stopDrawing);
+        document.addEventListener('mouseout', stopDrawing);
+
+        function startDrawing(e) {
+            if (e.target.closest('.enter-button')) return;
+            isDrawing = true;
+            [lastX, lastY] = [e.clientX, e.clientY];
+            // Start a new line
+            lines.push({
+                points: [[lastX, lastY]],
+                opacity: 1,
+                createdAt: Date.now()
+            });
         }
 
-        // Start slideshow
-        setInterval(nextSlide, slideDuration);
+        function draw(e) {
+            if (!isDrawing) return;
 
-        // Mobile menu functionality
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        const dropdowns = document.querySelectorAll('.dropdown');
+            const currentLine = lines[lines.length - 1];
+            currentLine.points.push([e.clientX, e.clientY]);
 
-        hamburger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-        });
+            // Redraw all lines
+            redrawLines();
+        }
 
-        // Handle dropdowns on mobile
-        dropdowns.forEach(dropdown => {
-            const link = dropdown.querySelector('.nav-link');
-            link.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    dropdown.classList.toggle('active');
+        function redrawLines() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const currentTime = Date.now();
+
+            lines = lines.filter(line => {
+                const age = currentTime - line.createdAt;
+                if (age > 3000) { // Start fading after 3 seconds
+                    line.opacity = Math.max(0, 1 - (age - 3000) / 1000); // Fade out over 1 second
                 }
+
+                if (line.opacity <= 0) return false; // Remove completely faded lines
+
+                ctx.beginPath();
+                ctx.moveTo(line.points[0][0], line.points[0][1]);
+                for (let i = 1; i < line.points.length; i++) {
+                    ctx.lineTo(line.points[i][0], line.points[i][1]);
+                }
+                ctx.strokeStyle = `rgba(0, 0, 0, ${line.opacity * 0.5})`; // Black with transparency
+                ctx.lineWidth = 2;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+
+                return true;
             });
-        });
+        }
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-menu') && !e.target.closest('.hamburger')) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.style.overflow = '';
-                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
-            }
-        });
+        function stopDrawing() {
+            isDrawing = false;
+        }
 
-        // Close menu when window is resized to desktop
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.style.overflow = '';
-                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+        // Animation loop for fading
+        function animate() {
+            redrawLines();
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Create raining emojis
+        function createEmoji() {
+            const emoji = document.createElement('div');
+            emoji.className = 'mouse';
+            // Randomly choose between mouse, pencil, and sparkle with weighted probability
+            const random = Math.random();
+            if (random < 0.5) {
+                emoji.textContent = '🐁'; // 50% chance for mouse
+            } else if (random < 0.75) {
+                emoji.textContent = '✏️'; // 25% chance for pencil
+            } else {
+                emoji.textContent = '✨'; // 25% chance for sparkle
             }
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.animationDuration = (Math.random() * 8 + 4) + 's';
+            document.querySelector('.mouse-rain').appendChild(emoji);
+
+            // Remove emoji after animation
+            setTimeout(() => {
+                emoji.remove();
+            }, 12000);
+        }
+
+        // Create emojis at random intervals
+        setInterval(createEmoji, 200);
+
+        // Create initial batch of emojis
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createEmoji, i * 200);
+        }
+
+        // Handle page transition
+        document.querySelector('.enter-button').addEventListener('click', function (e) {
+            e.preventDefault();
+            const transition = document.createElement('div');
+            transition.className = 'page-transition';
+            document.body.appendChild(transition);
+
+            // Trigger transition
+            setTimeout(() => {
+                transition.classList.add('active');
+            }, 10);
+
+            // Navigate after transition
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 500);
         });
     </script>
 </body>
