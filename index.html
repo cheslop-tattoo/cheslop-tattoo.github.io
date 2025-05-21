@@ -300,10 +300,25 @@
         document.addEventListener('mouseup', stopDrawing);
         document.addEventListener('mouseout', stopDrawing);
 
+        // Add touch event listeners
+        document.addEventListener('touchstart', handleTouchStart, { passive: false });
+        document.addEventListener('touchmove', handleTouchMove, { passive: false });
+        document.addEventListener('touchend', stopDrawing);
+        document.addEventListener('touchcancel', stopDrawing);
+
+        function getEventCoordinates(e) {
+            if (e.touches) {
+                return [e.touches[0].clientX, e.touches[0].clientY];
+            }
+            return [e.clientX, e.clientY];
+        }
+
         function startDrawing(e) {
             if (e.target.closest('.enter-button')) return;
+            e.preventDefault(); // Prevent default touch behavior
             isDrawing = true;
-            [lastX, lastY] = [e.clientX, e.clientY];
+            const [x, y] = getEventCoordinates(e);
+            [lastX, lastY] = [x, y];
             // Start a new line
             lines.push({
                 points: [[lastX, lastY]],
@@ -312,14 +327,24 @@
             });
         }
 
+        function handleTouchStart(e) {
+            startDrawing(e);
+        }
+
         function draw(e) {
             if (!isDrawing) return;
+            e.preventDefault(); // Prevent default touch behavior
 
+            const [x, y] = getEventCoordinates(e);
             const currentLine = lines[lines.length - 1];
-            currentLine.points.push([e.clientX, e.clientY]);
+            currentLine.points.push([x, y]);
 
             // Redraw all lines
             redrawLines();
+        }
+
+        function handleTouchMove(e) {
+            draw(e);
         }
 
         function redrawLines() {
