@@ -4,7 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tattoos - Chelsea Heslop</title>
+    <title>Tattoos - Chelsea Heslop | Edinburgh Tattoo Artist</title>
+    <meta name="description"
+        content="View Chelsea Heslop's tattoo portfolio featuring unique designs, pop culture art, and custom tattoos. Based in Edinburgh, UK.">
+    <meta name="keywords"
+        content="Chelsea Heslop, tattoo artist, Edinburgh tattoos, custom tattoos, pop culture tattoos, illustration">
+    <meta name="author" content="Chelsea Heslop">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Tattoos - Chelsea Heslop | Edinburgh Tattoo Artist">
+    <meta property="og:description"
+        content="View Chelsea Heslop's tattoo portfolio featuring unique designs, pop culture art, and custom tattoos. Based in Edinburgh, UK.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chelseaheslop.com/tattoos.html">
+    <meta property="og:image" content="https://chelseaheslop.com/halloween_cats.jpeg">
+    <link rel="canonical" href="https://chelseaheslop.com/tattoos.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -628,29 +641,45 @@
 
     <main class="tattoos-content">
         <div class="tattoos-grid">
-            <div class="portfolio-item">
-                <img src="haku.jpeg" alt="Haku" onclick="openModal(this.src)">
+            <div class="portfolio-item" onclick="openModal(this.querySelector('img').src)">
+                <img src="chelsea-heslop-spirited-away-haku-tattoo-design.jpeg"
+                    alt="Haku tattoo design by Chelsea Heslop - Spirited Away inspired artwork" loading="lazy"
+                    width="400" height="400">
             </div>
-            <div class="portfolio-item">
-                <img src="feathers_basic.jpeg" alt="Feathers Basic Design" onclick="openModal(this.src)">
+            <div class="portfolio-item" onclick="openModal(this.querySelector('img').src)">
+                <img src="chelsea-heslop-wallace-and-gromit-feathers-mcgraw-tattoo-design.jpeg"
+                    alt="Feather tattoo design by Chelsea Heslop - minimalist feather artwork" loading="lazy"
+                    width="400" height="400">
             </div>
-            <div class="portfolio-item">
-                <img src="scar.jpeg" alt="Scar Design" onclick="openModal(this.src)">
+            <div class="portfolio-item" onclick="openModal(this.querySelector('img').src)">
+                <img src="chelsea-heslop-lion-king-scar-tattoo-design.jpeg"
+                    alt="Scar tattoo design by Chelsea Heslop - Lion King inspired artwork" loading="lazy" width="400"
+                    height="400">
             </div>
-            <div class="portfolio-item">
-                <img src="little_prince.jpeg" alt="Little Prince" onclick="openModal(this.src)">
+            <div class="portfolio-item" onclick="openModal(this.querySelector('img').src)">
+                <img src="chelsea-heslop-little-prince-literary-tattoo-design.jpeg"
+                    alt="Little Prince tattoo design by Chelsea Heslop - literary inspired artwork" loading="lazy"
+                    width="400" height="400">
             </div>
-            <div class="portfolio-item">
-                <img src="rat_with_daisies.jpeg" alt="Rat with Daisies" onclick="openModal(this.src)">
+            <div class="portfolio-item" onclick="openModal(this.querySelector('img').src)">
+                <img src="chelsea-heslop-cute-rat-daisies-tattoo-design.jpeg"
+                    alt="Rat with Daisies tattoo design by Chelsea Heslop - cute animal artwork" loading="lazy"
+                    width="400" height="400">
             </div>
-            <div class="portfolio-item">
-                <img src="halloween_cats.jpeg" alt="Halloween Cats" onclick="openModal(this.src)">
+            <div class="portfolio-item" onclick="openModal(this.querySelector('img').src)">
+                <img src="chelsea-heslop-halloween-horror-cats-tattoo-design.jpeg"
+                    alt="Halloween Cats tattoo design by Chelsea Heslop - spooky cat artwork" loading="lazy" width="400"
+                    height="400">
             </div>
-            <div class="portfolio-item">
-                <img src="gatomon.jpeg" alt="Gatomon" onclick="openModal(this.src)">
+            <div class="portfolio-item" onclick="openModal(this.querySelector('img').src)">
+                <img src="chelsea-heslop-digimon-gatomon-tattoo-design.jpeg"
+                    alt="Gatomon tattoo design by Chelsea Heslop - Digimon inspired artwork" loading="lazy" width="400"
+                    height="400">
             </div>
-            <div class="portfolio-item">
-                <img src="kirby_link.jpeg" alt="Kirby Link" onclick="openModal(this.src)">
+            <div class="portfolio-item" onclick="openModal(this.querySelector('img').src)">
+                <img src="chelsea-heslop-nintendo-kirby-link-tattoo-design.jpeg"
+                    alt="Kirby Link tattoo design by Chelsea Heslop - Nintendo inspired artwork" loading="lazy"
+                    width="400" height="400">
             </div>
         </div>
     </main>
@@ -665,6 +694,36 @@
     <footer class="footer">
         © 2025 Chelsea Heslop. All rights reserved.
     </footer>
+
+    <!-- Update structured data image URLs -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ImageGallery",
+        "name": "Chelsea Heslop Tattoo Portfolio",
+        "description": "A collection of tattoo designs by Chelsea Heslop, Edinburgh-based tattoo artist",
+        "image": [
+            {
+                "@type": "ImageObject",
+                "contentUrl": "https://chelseaheslop.com/chelsea-heslop-spirited-away-haku-tattoo-design.jpeg",
+                "name": "Haku tattoo design",
+                "description": "Spirited Away inspired tattoo design"
+            },
+            {
+                "@type": "ImageObject",
+                "contentUrl": "https://chelseaheslop.com/chelsea-heslop-wallace-and-gromit-feathers-mcgraw-tattoo-design.jpeg",
+                "name": "Feather tattoo design",
+                "description": "Wallace and Gromit inspired tattoo design"
+            }
+        ],
+        "author": {
+            "@type": "Person",
+            "name": "Chelsea Heslop",
+            "jobTitle": "Tattoo Artist",
+            "location": "Edinburgh, UK"
+        }
+    }
+    </script>
 
     <script>
         // Modal functionality

@@ -1,0 +1,10 @@
+#!/bin/bash
+mv "haku.jpeg" "chelsea-heslop-spirited-away-haku-tattoo-design.jpeg"
+mv "feathers_basic.jpeg" "chelsea-heslop-wallace-and-gromit-feathers-mcgraw-tattoo-design.jpeg"
+mv "scar.jpeg" "chelsea-heslop-lion-king-scar-tattoo-design.jpeg"
+mv "little_prince.jpeg" "chelsea-heslop-little-prince-literary-tattoo-design.jpeg"
+mv "rat_with_daisies.jpeg" "chelsea-heslop-cute-rat-daisies-tattoo-design.jpeg"
+mv "halloween_cats.jpeg" "chelsea-heslop-halloween-horror-cats-tattoo-design.jpeg"
+mv "gatomon.jpeg" "chelsea-heslop-digimon-gatomon-tattoo-design.jpeg"
+mv "kirby_link.jpeg" "chelsea-heslop-nintendo-kirby-link-tattoo-design.jpeg"
+echo "Image files have been renamed successfully!"
